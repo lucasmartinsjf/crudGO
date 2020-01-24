@@ -14,7 +14,7 @@ type Names struct {
 	Id       int
 	Name     string
 	Email    string
-	Telefone int
+	Telefone string
 }
 
 // Função dbConn, abre a conexão com o banco de dados
@@ -53,8 +53,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	// Realiza a estrutura de repetição pegando todos os valores do banco
 	for selDB.Next() {
 		// Armazena os valores em variáveis
-		var id, telefone int
-		var name, email string
+		var id int
+		var name, email, telefone string
 
 		// Faz o Scan do SELECT
 		err = selDB.Scan(&id, &name, &email, &telefone)
@@ -98,8 +98,8 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	// Realiza a estrutura de repetição pegando todos os valores do banco
 	for selDB.Next() {
 		// Armazena os valores em variaveis
-		var id, telefone int
-		var name, email string
+		var id int
+		var name, email, telefone string
 
 		// Faz o Scan do SELECT
 		err = selDB.Scan(&id, &name, &email, &telefone)
@@ -146,11 +146,11 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	// Realiza a estrutura de repetição pegando todos os valores do banco
 	for selDB.Next() {
 		//Armazena os valores em variaveis
-		var id, telefone int
-		var name, email string
+		var id int
+		var name, email, telefone string
 
 		// Faz o Scan do SELECT
-		err = selDB.Scan(&id, &name, &email)
+		err = selDB.Scan(&id, &name, &email, &telefone)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -181,18 +181,19 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 		// Pega os campos do formulário
 		name := r.FormValue("name")
 		email := r.FormValue("email")
+		telefone := r.FormValue("telefone")
 
 		// Prepara a SQL e verifica errors
-		insForm, err := db.Prepare("INSERT INTO names(name, email) VALUES(?,?)")
+		insForm, err := db.Prepare("INSERT INTO names(name, email, telefone) VALUES(?,?,?)")
 		if err != nil {
 			panic(err.Error())
 		}
 
 		// Insere valores do formulario com a SQL tratada e verifica errors
-		insForm.Exec(name, email)
+		insForm.Exec(name, email, telefone)
 
 		// Exibe um log com os valores digitados no formulário
-		log.Println("INSERT: Name: " + name + " | E-mail: " + email)
+		log.Println("INSERT: Name: " + name + " | E-mail: " + email + " | telefone: " + telefone)
 	}
 
 	// Encerra a conexão do dbConn()
@@ -214,10 +215,11 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		// Pega os campos do formulário
 		name := r.FormValue("name")
 		email := r.FormValue("email")
+		telefone := r.FormValue("telefone")
 		id := r.FormValue("uid")
 
 		// Prepara a SQL e verifica errors
-		insForm, err := db.Prepare("UPDATE names SET name=?, email=? WHERE id=?")
+		insForm, err := db.Prepare("UPDATE names SET name=?, email=?, telefone=? WHERE id=?")
 		if err != nil {
 			panic(err.Error())
 		}
@@ -226,7 +228,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		insForm.Exec(name, email, id)
 
 		// Exibe um log com os valores digitados no formulario
-		log.Println("UPDATE: Name: " + name + " |E-mail: " + email)
+		log.Println("UPDATE: Name: " + name + " |E-mail: " + email + " |Telefone: " + telefone)
 	}
 
 	// Encerra a conexão do dbConn()
