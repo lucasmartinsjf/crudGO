@@ -24,7 +24,7 @@ func dbConn() (db *sql.DB) {
 	dbPass := "mudar@123"
 	dbName := "crudgo1"
 
-	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName)
+	db, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp(db:3306)/"+dbName)
 	if err != nil {
 		panic(err.Error())
 	}

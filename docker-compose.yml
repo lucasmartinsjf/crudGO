@@ -11,7 +11,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=mudar@123
       - MYSQL_DATABASE=crudgo1
-  app:
+  db-app:
     image: phpmyadmin/phpmyadmin:latest
     links:
       - db
@@ -19,3 +19,9 @@ services:
       - 8088:80
     environment:
       - PMA_ARBITRARY=1
+  app:
+    build: .
+    links:
+    - db
+    ports:
+    - 9000:9000
