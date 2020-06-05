@@ -1,5 +1,10 @@
 CRUD simples feito em Golang para exercitar o aprendizado da linguagem.
 
-Antes de clonar o projeto, tenha certeza de ter instalado e configurado GO em sua máquina.
-Para rodar o projeto, basta digitar em seu prompt: go run main.go
-Lembre-se de incluir as informações de seu banco de dados.
+Dependencias: 
+-  Go 
+- Docker 
+- Docker Compose
+
+Instalação: 
+Após instalar o docker compose , acessar o PHPmyAdmin e rodar o script db.sql, 
+Em seguida acessar o servidor na porta "9000". 
