@@ -7,15 +7,18 @@
   
 
  ## Dependencias: 
-- Go (Caso necessite realizar teste fora do Docker)
-- Docker 
-- Docker Compose
+  - Go (Caso necessite realizar teste fora do Docker)
+  - Docker 
+  - Docker Compose
 
 ## Instalação: 
-- Executar Arquivo deploy.sh, cuja o mesmo irá realizar a Instalação das dependencias, 
+  - Executar Arquivo deploy.sh, cuja o mesmo irá realizar a Instalação das dependencias, 
  
 
-- Abrir o navegador na porta 8088, Acessar o phpmyadmin com as credenciais configuradas no arquivo ".env", e executar o arquivo db.sql.
+  - Abrir o navegador na porta 8088, Acessar o phpmyadmin com as credenciais configuradas no arquivo ".env", e executar o arquivo db.sql.
 
-- Ao final acessar o o navegador na porta http://"SEU_IP".
+  - Ao final acessar o o navegador na porta http://"SEU_IP".
+
+## Esboço do Projeto: 
+  - https://drive.google.com/file/d/1zR9odygZPJ6acLRmr4xsCJY8U8JEomk8/view?usp=sharing
  
